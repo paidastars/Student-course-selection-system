@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsy.xsb.mapper.KcbMapper">
+
+    <resultMap id="BaseResultMap" type="com.zsy.xsb.entity.Kcb">
+            <id property="kch" column="kch" jdbcType="INTEGER"/>
+            <result property="kcm" column="kcm" jdbcType="VARCHAR"/>
+            <result property="kxxq" column="kxxq" jdbcType="OTHER"/>
+            <result property="xs" column="xs" jdbcType="INTEGER"/>
+            <result property="xf" column="xf" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        kch,kcm,kxxq,
+        xs,xf
+    </sql>
+
+</mapper>

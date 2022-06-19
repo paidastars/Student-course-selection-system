@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsy.xsb.mapper.CjbMapper">
+
+    <resultMap id="BaseResultMap" type="com.zsy.xsb.entity.Cjb">
+            <result property="xh" column="xh" jdbcType="INTEGER"/>
+            <result property="kch" column="kch" jdbcType="INTEGER"/>
+            <result property="cj" column="cj" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        xh,kch,cj
+    </sql>
+
+    <select id="findAll" resultType="com.zsy.xsb.VO.CjbKchVO">
+        select  xm,c.xh,kcm kch,cj from cjb c ,kcb k,xsb x where c.kch=k.kch and c.xh=x.xh ${ew.customSqlSegment}
+    </select>
+
+    <select id="findByCJ" resultType="com.zsy.xsb.VO.CjbCharVO">
+        select
+        sum(case when cj>=80 then 1 else 0 end) as yxrs,
+        sum(case when cj>=60 then 1 else 0 end) as jgrs,
+        sum(case when 60>cj then 1 else 0 end) as bjgrs
+        from cjb;
+    </select>
+
+</mapper>

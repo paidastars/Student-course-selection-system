@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsy.xsb.mapper.XskcbMapper">
+
+    <resultMap id="BaseResultMap" type="com.zsy.xsb.entity.Xskcb">
+            <result property="xh" column="xh" jdbcType="INTEGER"/>
+            <result property="kch" column="kch" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        xh,kch
+    </sql>
+
+    <select id="findAll" resultType="com.zsy.xsb.VO.XskcbxhVO">
+        select * from(select a.xh,c.xm,a.kch,b.kcm from (xskcb a LEFT JOIN kcb b on a.kch=b.kch) LEFT JOIN xsb c on a.xh=c.xh) z where z.xh= ${xh}
+    </select>
+
+    <insert id="insertnoll" >
+        insert into xskcb  select ${xh},${kch} from dual  where not EXISTS(select * from xskcb where xh=${xh} and kch=${kch})
+    </insert>
+
+</mapper>
